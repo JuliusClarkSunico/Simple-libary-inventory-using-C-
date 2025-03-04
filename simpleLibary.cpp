@@ -59,23 +59,38 @@ int main()
     }
 
     int choice;
-    cout << "Enter the book number to see its details and enter 0 to see all. ";
-    cin >> choice;
+    string quitProgram;
+    bool choosing = true;
 
-    divider();
+    while (choosing)
+    {
+        cout << "Enter the book number to see its details and enter 0 to see all. ";
+        cin >> choice;
 
-    if (choice <= 0)
-    {
-        displayAllBooks(book, totalBooks);
+        divider();
+
+        if (choice <= 0)
+        {
+            displayAllBooks(book, totalBooks);
+        }
+        else if (choice > 0 && choice <= totalBooks)
+        {
+            displayChosenBook(book, choice);
+        }
+        else
+        {
+            cout << "Invalid choice." << endl;
+        }
+
+        cout << "Quit? (Y/n): ";
+        cin >> quitProgram;
+
+        if (quitProgram == "Y" || quitProgram == "y")
+        {
+            choosing = false;
+        }
     }
-    else if (choice > 0 && choice <= totalBooks)
-    {
-        displayChosenBook(book, choice);
-    }
-    else
-    {
-        cout << "Invalid choice." << endl;
-    }
+
 
     return 0;
 }
